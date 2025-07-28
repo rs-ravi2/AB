@@ -1,0 +1,159 @@
+ZM:
+  minio_config:
+    minio_url: 172.27.146.114:9000
+    minio_username: ds2applicationuser
+    minio_password: ds2applicationuser
+    minio_bucket_name: zm-autocm-models
+  models:
+    id_orientation:
+      img_size: 480
+      model_path: './models/idUpright/tf2_efficientnet_classifier/'
+      target_labels: {0: "0", 1: "180", 2: "270", 3: "90"}
+
+    id_quality:
+      img_size: 300
+      face_detector_model: './models/idImage/retinaface_detector/detection.onnx'
+      classifier_model_path: './models/idImage/tf2_efficientnet_classifier/'
+
+    id_type:
+      img_size: 300
+      detection_method: 'classifier' # Options: "ocr", "classifier", "hybrid"
+
+      classifier:
+        model_path: './models/idType/tf2_efficientnet_classifier/'
+        target_labels:
+          - { prediction_index: 1, label: "National ID" }
+          - { prediction_index: 2, label: "Passport" }
+
+    id_demographics:
+      ocr_model_path: './models/idOCR/rapidocr/'
+      ocr_field_names: src.idOCR.field_extraction.zm_ocr.OCRFieldNames
+      ocr_field_extraction: src.idOCR.field_extraction.zm_ocr.extract_kyc_fields
+
+MG:
+  minio_config:
+    minio_url: 172.25.128.62:9000
+    minio_username: 
+    minio_password: 
+    minio_bucket_name: 
+  models:
+    id_orientation:
+      img_size: 480
+      model_path: './models/idUpright/tf2_efficientnet_classifier/'
+      target_labels: {0: "0", 1: "180", 2: "270", 3: "90"}
+
+    id_quality:
+      img_size: 200
+      face_detector_model: './models/idImage/retinaface_detector/detection.onnx'
+      classifier_model_path: './models/idImage/tf2_efficientnet_classifier/'
+
+    id_type:
+      img_size: 300
+      detection_method: 'classifier'
+
+      classifier:
+        model_path: './models/idType/tf2_efficientnet_classifier/'
+        target_labels:
+          - {prediction_index: 0, label: "National ID"}
+
+    id_demographics:
+      ocr_model_path: './models/idOCR/rapidocr/'
+      ocr_field_names: src.idOCR.field_extraction.mg_ocr.OCRFieldNames
+      ocr_field_extraction: src.idOCR.field_extraction.mg_ocr.extract_kyc_fields
+
+CG:
+  minio_config:
+    minio_url: 172.25.64.126:9001
+    minio_username: cg-base-compliance-models
+    minio_password: cg-base-compliance-models
+    minio_bucket_name: cg-base-compliance-models
+  models:
+    id_orientation:
+      img_size: 480
+      model_path: './models/idUpright/tf2_efficientnet_classifier/'
+      target_labels: { 0: "0", 1: "180", 2: "270", 3: "90" }
+
+    id_quality:
+      img_size: 200
+      face_detector_model: './models/idImage/retinaface_detector/detection.onnx'
+      classifier_model_path: './models/idImage/tf2_efficientnet_classifier/'
+
+    id_type:
+      img_size: 300
+      detection_method: 'ocr'
+
+      ocr:
+        ocr_model_path: './models/idOCR/rapidocr/'
+        field_extraction_module: src.idType.type_detection.cg_ocr
+
+    id_demographics:
+      ocr_model_path: './models/idOCR/rapidocr/'
+      ocr_field_names: src.idOCR.field_extraction.cg_ocr.OCRFieldNames
+      ocr_field_extraction: src.idOCR.field_extraction.cg_ocr.extract_kyc_fields
+
+
+MW:
+  minio_config:
+    minio_url: 172.26.128.205:9001
+    minio_username: ds2applicationuser
+    minio_password: vqgr&v68[*ULH'6v
+    minio_bucket_name: mw-autocm-models
+  models:
+      id_orientation:
+        img_size: 480
+        model_path: './models/idUpright/tf2_efficientnet_classifier/'
+        target_labels: { 0: "0", 1: "180", 2: "270", 3: "90" }
+
+      id_quality:
+        img_size: 200
+        face_detector_model: './models/idImage/retinaface_detector/detection.onnx'
+        classifier_model_path: './models/idImage/tf2_efficientnet_classifier/'
+
+      id_type:
+        img_size: 300
+        detection_method: 'ocr'
+
+        ocr:
+          ocr_model_path: './models/idOCR/rapidocr/'
+          field_extraction_module: src.idType.type_detection.mw_ocr
+
+      id_demographics:
+        ocr_model_path: './models/idOCR/rapidocr/'
+        ocr_field_names: src.idOCR.field_extraction.mw_ocr.OCRFieldNames
+        ocr_field_extraction: src.idOCR.field_extraction.mw_ocr.extract_kyc_fields
+
+
+KE:
+  minio_config:
+    minio_url: 172.23.1.158:9001
+    minio_username: ds2applicationuser
+    minio_password: ds2applicationuser
+    minio_bucket_name: ke-autocm-models
+  models:
+      id_orientation:
+        img_size: 480
+        model_path: './models/idUpright/tf2_efficientnet_classifier/'
+        target_labels: {0: "0", 1: "180", 2: "270", 3: "90"}
+
+      id_quality:
+        img_size: 300
+        face_detector_model: './models/idImage/retinaface_detector/detection.onnx'
+        classifier_model_path: './models/idImage/tf2_efficientnet_classifier/'
+        
+      id_type:
+        img_size: 480
+        detection_method: 'hybrid'
+
+        classifier:
+          model_path: './models/idType/tf2_efficientnet_classifier/'
+          target_labels:
+            - {prediction_index: 1, label: "National ID"}
+            - {prediction_index: 3, label: "Passport"}
+        ocr:
+          ocr_model_path: './models/idOCR/rapidocr/'
+          field_extraction_module: src.idType.type_detection.ke_ocr
+
+      id_demographics:
+        ocr_model_path: './models/idOCR/rapidocr/'
+        ocr_field_names: src.idOCR.field_extraction.ke_ocr.OCRFieldNames
+        ocr_field_extraction: src.idOCR.field_extraction.ke_ocr.extract_kyc_fields
